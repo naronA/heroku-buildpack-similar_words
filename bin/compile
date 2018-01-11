@@ -23,6 +23,10 @@ export INFOPATH=$HOME/.linuxbrew/share/info:$INFOPATH"
 export LD_LIBRARY_PATH=$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH
 _EOT_
 
+echo "HOME = " $HOME
+echo "BUILD_DIR = "$BUILD_DIR
+echo "PROFILE_PATH = "$PROFILE_PATH
+
 . $PROFILE_PATH
 cat $PROFILE_PATH | indent
 
@@ -35,7 +39,6 @@ if [ $? -ne 0 ]; then
     rm "$HOME/$VENDOR_DIR/linuxbrew"
 fi
 # install
-_EOT_
 
 #git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git $HOME/neologd
 #cd $HOME/neologd
