@@ -14,6 +14,9 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+## この処理は/tmp/build-XXXX ディレクトリ上で行っている
+## /app(HOME)に移動した後、ただしく動作するために.profile.d/linuxbrew.sh
+## にPATH等を設定しておく
 PROFILE_PATH="$BUILD_DIR/.profile.d/linuxbrew.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 cat << _EOT_ > $PROFILE_PATH
@@ -46,4 +49,9 @@ fi
 # save '.linuxbrew'
 #brew uninstall mecab-ipadic
 brew cleanup -s
+
+## brewコマンドインストールされたものは/app/.linuxbrewに配置される
+## buildpack処理後に/app/以下は全て削除されるので
+## build処理しているディレクトリ(/tmp/build-XXXXX)に退避する
+## tarでアーカイブして移動している
 (cd $HOME && tar cf - .linuxbrew) | (cd $BUILD_DIR && tar xf -)
