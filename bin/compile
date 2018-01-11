@@ -42,3 +42,4 @@ cd $HOME/neologd
 ./bin/install-mecab-ipadic-neologd -n -y
 # save '.linuxbrew'
 (cd $HOME && tar cf - .linuxbrew) | (cd $BUILD_DIR && tar xf -)
+brew cleanup -s
