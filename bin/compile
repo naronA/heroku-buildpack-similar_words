@@ -39,5 +39,5 @@ _EOT_
 
 git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git $HOME/neologd
 cd $HOME/neologd
-./bin/install-mecab-ipadic-neologd -n
+./bin/install-mecab-ipadic-neologd -n -y
 # save '.linuxbrew'
