@@ -41,3 +41,4 @@ git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git $HOME/ne
 cd $HOME/neologd
 ./bin/install-mecab-ipadic-neologd -n -y
 # save '.linuxbrew'
+(cd $HOME && tar cf - .linuxbrew) | (cd $BUILD_DIR && tar xf -)
