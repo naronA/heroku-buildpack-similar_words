@@ -37,10 +37,10 @@ fi
 # install
 _EOT_
 
-git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git $HOME/neologd
-cd $HOME/neologd
-./bin/install-mecab-ipadic-neologd -n -y
+#git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git $HOME/neologd
+#cd $HOME/neologd
+#./bin/install-mecab-ipadic-neologd -n -y
 # save '.linuxbrew'
-brew uninstall mecab-ipadic
+#brew uninstall mecab-ipadic
 brew cleanup -s
 (cd $HOME && tar cf - .linuxbrew) | (cd $BUILD_DIR && tar xf -)
