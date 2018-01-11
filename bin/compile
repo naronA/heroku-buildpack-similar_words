@@ -1,0 +1,43 @@
+#!/bin/sh
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+echo "-----> Installing linuxbrew"
+BUILD_DIR=$1
+VENDOR_DIR="vendor"
+
+git clone "https://github.com/Linuxbrew/brew.git" \
+  "$HOME/.linuxbrew" 2>&1 | indent
+if [ $? -ne 0 ]; then
+  exit 1
+fi
+
+PROFILE_PATH="$BUILD_DIR/.profile.d/linuxbrew.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+cat << _EOT_ > $PROFILE_PATH
+export PATH=$HOME/.linuxbrew/bin:$PATH
+export MANPATH=$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH=$HOME/.linuxbrew/share/info:$INFOPATH"
+export LD_LIBRARY_PATH=HOME/.linuxbrew/lib:$LD_LIBRARY_PATH
+_EOT_
+
+. $PROFILE_PATH
+cat $PROFILE_PATH | indent
+
+echo "-----> Installing $formula using brew"
+brew install mecab
+brew install mecab-ipadic 
+brew install git curl xz
+
+if [ $? -ne 0 ]; then
+    rm "$HOME/$VENDOR_DIR/linuxbrew"
+fi
+# install
+_EOT_
+
+git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git $HOME/neologd
+cd $HOME/neologd
+./bin/install-mecab-ipadic-neologd -n
+# save '.linuxbrew'
