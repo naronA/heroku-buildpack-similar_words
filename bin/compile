@@ -29,7 +29,7 @@ cat $PROFILE_PATH | indent
 echo "-----> Installing $formula using brew"
 brew install mecab
 brew install mecab-ipadic 
-brew install git curl xz
+brew install xz
 
 if [ $? -ne 0 ]; then
     rm "$HOME/$VENDOR_DIR/linuxbrew"
